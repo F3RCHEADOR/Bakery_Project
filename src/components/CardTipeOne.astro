@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    imagePath: string;
+    altText: string;
+    name: string;
+    age: number;
+}
+
+const { imagePath, altText, name, age } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif,webp}",
+);
+if (!images[imagePath])
+    throw new Error(
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
+    );
+---
+
+<div class="max-w-5xl mx-auto">
+    <div class="relative z-0 flex items-center justify-center">
+        <div
+            class="flex flex-col items-start w-3/4 bg-slate-100 opacity-70 border rounded-lg py-24 px-8 relative z-10"
+        >
+            <h3 class="text-xl font-script">{name}</h3>
+            <span class="text-sm font-extralight my-4 text-gray-500"
+                >${age}</span
+            >
+            <div class="inline-flex space-x-3 text-xs font-bold text-gray-600">
+                <button class="border-2 rounded-lg p-1">New</button>
+                <button class="border-2 rounded-lg p-1">Bundle</button>
+            </div>
+        </div>
+        <div class="w-1/2">
+            <div class="absolute z-10 left-80 top-4">
+                <Image
+                    src={images[imagePath]()}
+                    alt={altText}
+                    width={600}
+                    height={500}
+                />
+            </div>
+        </div>
+    </div>
+</div>

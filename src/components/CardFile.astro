@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    imagePath: string;
+    altText: string;
+    name: string;
+    age: number;
+    tags: string[];
+}
+
+const { imagePath, altText, name, age, tags } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif,webp}",
+);
+if (!images[imagePath])
+    throw new Error(
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
+    );
+
+console.log(tags);
+---
+
+<div class="rounded-xl bg-blue-100 py-8">
+    <div class="flex items-center justify-between">
+        <div class="mx-2 space-x-2">
+            {tags.map(tag => 
+                 <button class="border bg-slate-300 font-extralight text-xs text-gray-700 p-1 px-2 rounded-xl">{tag}</button>
+            )}
+        </div>
+        <span class="mx-4 text-gray-600  ">${age}</span>
+    </div>
+    <div class="flex items-center justify-center mx-auto">
+        <Image
+            src={images[imagePath]()}
+            alt={altText}
+            width={300}
+            height={300}
+        />
+    </div>
+    <h1 class="font-script text-center">{name}</h1>
+</div>
