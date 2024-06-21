@@ -24,7 +24,7 @@ if (!images[imagePath])
     >
         <div class="w-full sm:w-1/2">
             <div
-                class="sm:absolute z-20 sm:right-8 md:right-16 lg:right-28 sm:top-4"
+                class="sm:absolute z-20 sm:-right-16 md:right-4 lg:right-12 sm:top-0"
             >
                 <Image
                     src={images[imagePath]()}
@@ -35,7 +35,7 @@ if (!images[imagePath])
             </div>
         </div>
         <div
-            class="flex flex-col items-start w-full sm:w-2/4 bg-slate-100 opacity-70 border rounded-xl py-24 px-8 relative z-10"
+            class="flex flex-col items-start w-full sm:w-3/5 bg-slate-100 opacity-70 border rounded-xl py-24 px-8 relative z-10"
         >
             <h3 class="text-xl font-script">{name}</h3>
             <span class="text-sm font-extralight my-4 text-gray-500"

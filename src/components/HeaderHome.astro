@@ -1,5 +1,29 @@
-<header class="bg-red-50 select-none flex items-center justify-between my-8 mx-4 sm:mx-8 ">
-    <span>Logo</span>
-    <h1 class="text-center font-script  text-xl sm:text-2xl md:text-3xl">Bakery Enchanted Example</h1>
-    <span>Carrito</span>
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+interface Props {
+    imagePath: string;
+    altText: string;
+}
+
+const { imagePath, altText } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif,webp}",
+);
+if (!images[imagePath])
+    throw new Error(
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
+    );
+---
+
+<header
+    class="bg-red-50 select-none flex items-center justify-between my-8 mx-4 sm:mx-8"
+>
+    <Image class="w-12 md:w-36 rounded-full mix-blend-multiply" src={images[imagePath]()} alt={altText}  />
+        <h1 class="text-center font-script text-xl sm:text-2xl md:text-3xl">
+            Bakery Enchanted Example
+        </h1>
+        <Icon class="text-4xl" name={"lucide:shopping-cart"} />
+    </Image>
 </header>

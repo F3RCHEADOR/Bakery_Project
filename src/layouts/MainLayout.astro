@@ -10,9 +10,8 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
     <BaseHead title={title} />
-    <HeaderHome />
-    <body class="bg-red-50 select-none">
-       
+    <HeaderHome imagePath="/src/assets/logo.jpg" altText="logo Bakery" />
+    <body class="bg-red-50 select-none m-4 full-page-figure ">
         <slot />
     </body>
 </html>
