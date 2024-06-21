@@ -7,9 +7,10 @@ interface Props {
     name: string;
     age: number;
     tags: string[];
+    bg:string,
 }
 
-const { imagePath, altText, name, age, tags } = Astro.props;
+const { imagePath, altText, name, age, tags, bg } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
     "/src/assets/*.{jpeg,jpg,png,gif,webp}",
 );
@@ -21,7 +22,7 @@ if (!images[imagePath])
 console.log(tags);
 ---
 
-<div class="rounded-xl bg-blue-100 py-14">
+<div class=`rounded-xl ${bg} py-14`>
     <div class="flex items-center justify-between">
         <div class="mx-2 space-x-2">
             {tags.map(tag => 

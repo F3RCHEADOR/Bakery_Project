@@ -1,39 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
-import CardTipeOne from "@/components/CardTipeOne.astro";
-import CardFile from "@/components/CardFile.astro";
+import SectionOne from "@/layouts/SectionOne.astro"
 ---
 
 <MainLayout title="Home">
-	<CardTipeOne
-		imagePath="/src/assets/imagen1.webp"
-		altText="Imagen 1"
-		name="Triple Bundle Family Trouble"
-		age={19}
-	/>
-	<article
-		class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0 "
-	>
-		<CardFile
-			imagePath="/src/assets/creamy_nonsense.webp"
-			altText="mixed_creamy"
-			age={2}
-			name="Mixed Delight"
-			tags={["New", "Bundle"]}
-		/>
-		<CardFile
-			imagePath="/src/assets/chocolate_dream.webp"
-			altText="chcolato"
-			age={8}
-			name="Chocolate Dream"
-			tags={["New"]}
-		/>
-		<CardFile
-			imagePath="/src/assets/strawberry_blast.webp"
-			altText="strawberry_blast"
-			age={6}
-			name="Strawberry Blast"
-			tags={["New", "Expensive"]}
-		/>
-	</article>
+	<SectionOne />
 </MainLayout>
