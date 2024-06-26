@@ -1,0 +1,23 @@
+---
+import Image from "astro/components/Image.astro";
+import MainLayout from "./MainLayout.astro";
+import { type CollectionEntry } from "astro:content";
+type Props = CollectionEntry<"product">["data"];
+const { name, srcImage, bg, tags, price, altImage } = Astro.props;
+---
+
+<MainLayout title={name}>
+    <div class=`w-56 h-96 ${bg} `>   
+        <h1>{name}</h1>
+        <h3>${price}</h3>
+        {tags.map(tag => <div>{tag}</div>) }
+        <Image
+            class="rounded-full object-cover"
+            width={200}
+            height={200}
+            src={srcImage}
+            alt={altImage}
+        />
+    </div>
+    <slot />
+</MainLayout>
