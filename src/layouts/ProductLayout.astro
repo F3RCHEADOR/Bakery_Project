@@ -3,21 +3,88 @@ import Image from "astro/components/Image.astro";
 import MainLayout from "./MainLayout.astro";
 import { type CollectionEntry } from "astro:content";
 type Props = CollectionEntry<"product">["data"];
-const { name, srcImage, tags, price, altImage } = Astro.props;
+const { name, srcImage, tags, price, altImage, description } = Astro.props;
 ---
 
 <MainLayout title={name}>
-    <div class="w-56 h-96">   
-        <h1>{name}</h1>
-        <h3>${price}</h3>
-        {tags.map(tag => <div>{tag}</div>) }
-        <Image
-            class="rounded-full object-cover"
-            width={200}
-            height={200}
-            src={srcImage}
-            alt={altImage}
-        />
+    <section
+        class="max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 mx-auto pt-4 md:pt-2"
+    >
+        <div class="my-auto">
+            <h1
+                class="font-script text-6xl md:w-40 text-center md:text-left text-gray-900"
+            >
+                {name}
+            </h1>
+            <p
+                class="text-lg mt-2 font-medium md:w-4/5 text-center md:text-left text-gray-700"
+            >
+                {description}
+            </p>
+        </div>
+
+        <div class="">
+            <Image
+                class="rounded-full object-cover"
+                width={500}
+                height={500}
+                src={srcImage}
+                alt={altImage}
+            />
+        </div>
+
+        <div class="w-52 mx-auto font-semibold text-gray-700">
+            <h2 class="my-2 text-lg">Donut Size</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >M</button
+                >
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >L</button
+                >
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >XL</button
+                >
+            </div>
+            <h2 class="my-2 text-lg">Delivery</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <button
+                    class="bg-white w-24 h-12 active:border-4 border-gray-600 rounded-md"
+                    >Bakend</button
+                >
+
+                <button
+                    class="bg-white w-24 h-12 active:border-4 border-gray-600 rounded-md"
+                    >Frozen</button
+                >
+            </div>
+            <h2 class="my-2 text-lg">Box Size</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >1</button
+                >
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >6</button
+                >
+                <button
+                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    >12</button
+                >
+            </div>
+        </div>
+    </section>
+    <div class="flex justify-between items-center bg-white rounded-xl mx-auto w-[40rem] py-5 px-4">
+        <div>
+            <h4>Total price</h4>
+            <span>${price}.00</span>
+        </div>
+        <button class="px-4 py-4 bg-slate-300 rounded-lg">Add to Car</button>
     </div>
+
     <slot />
 </MainLayout>
