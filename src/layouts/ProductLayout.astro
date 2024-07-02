@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import MainLayout from "./MainLayout.astro";
 import { type CollectionEntry } from "astro:content";
+import CardFile from "@/components/CardFile.astro";
 type Props = CollectionEntry<"product">["data"];
 const { name, srcImage, tags, price, altImage, description } = Astro.props;
 ---
@@ -12,7 +13,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
     >
         <div class="my-auto">
             <h1
-                class="font-script text-6xl md:w-40 text-center md:text-left text-gray-900"
+                class="font-script text-6xl md:w-96 text-center md:text-left text-gray-900"
             >
                 {name}
             </h1>
@@ -37,7 +38,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             <h2 class="my-2 text-lg">Donut Size</h2>
             <div class="grid grid-cols-3 gap-4">
                 <button
-                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    class="bg-white w-12 h-14 border-4 border-gray-600 rounded-md"
                     >M</button
                 >
                 <button
@@ -52,7 +53,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             <h2 class="my-2 text-lg">Delivery</h2>
             <div class="grid grid-cols-2 gap-4">
                 <button
-                    class="bg-white w-24 h-12 active:border-4 border-gray-600 rounded-md"
+                    class="bg-white w-24 h-12 border-4 border-gray-600 rounded-md"
                     >Bakend</button
                 >
 
@@ -64,7 +65,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             <h2 class="my-2 text-lg">Box Size</h2>
             <div class="grid grid-cols-3 gap-4">
                 <button
-                    class="bg-white w-12 h-14 active:border-4 border-gray-600 rounded-md"
+                    class="bg-white w-12 h-14 border-4 border-gray-600 rounded-md"
                     >1</button
                 >
                 <button
@@ -78,13 +79,52 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             </div>
         </div>
     </section>
-    <div class="flex justify-between items-center bg-white rounded-xl mx-auto w-[40rem] py-5 px-4">
-        <div>
-            <h4>Total price</h4>
-            <span>${price}.00</span>
+    <div
+        class="flex justify-between items-center my-16 bg-white rounded-xl mx-auto w-4/5 xl:w-[40rem] py-2 xl:py-5 px-4"
+    >
+        <div class="text-purple-900">
+            <h4 class="font-medium">Total price</h4>
+            <span class="font-extrabold">${price}.00</span>
         </div>
-        <button class="px-4 py-4 bg-slate-300 rounded-lg">Add to Car</button>
+        <button
+            class="px-4 py-4 bg-green-100 hover:bg-green-300 border rounded-xl"
+            >Add to Car</button
+        >
+    </div>
+    <div
+        class="max-w-screen-md xl:max-w-screen-lg mx-auto prose prose-zinc lg:prose-base px-2 md:px-8 prose-img:w-4/5 prose-img:mx-auto"
+    >
+        <slot />
     </div>
 
-    <slot />
+    <div class="my-8">
+        <h4 class="my-4 pl-4 lg:pl-56 font-script">Related do(u)nuts</h4>
+
+        <article class="px-4 lg:pl-56 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4">
+            <CardFile
+                imagePath="/src/assets/strawberry_blast.webp"
+                altText="strawberry_blast"
+                age={6}
+                name="Strawberry Blast"
+                tags={["New", "Expensive"]}
+                bg="bg-white"
+            />
+            <CardFile
+                imagePath="/src/assets/chocolate_dream.webp"
+                altText="chcolato"
+                age={8}
+                name="Chocolate Dream"
+                tags={["New"]}
+                bg="bg-white"
+            />
+            <CardFile
+                imagePath="/src/assets/creamy_nonsense.webp"
+                altText="mixed_creamy"
+                age={2}
+                name="Mixed Delight"
+                tags={["New", "Bundle"]}
+                bg="bg-white"
+            />
+        </article>
+    </div>
 </MainLayout>
