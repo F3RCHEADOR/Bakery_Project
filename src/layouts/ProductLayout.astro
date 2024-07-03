@@ -3,7 +3,11 @@ import Image from "astro/components/Image.astro";
 import MainLayout from "./MainLayout.astro";
 import { type CollectionEntry } from "astro:content";
 import CardFile from "@/components/CardFile.astro";
+import FileProduct from "./FileProduct.astro";
 type Props = CollectionEntry<"product">["data"];
+import { getCollection } from "astro:content";
+const products = (await getCollection("product"));
+
 const { name, srcImage, tags, price, altImage, description } = Astro.props;
 ---
 
@@ -97,34 +101,12 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
         <slot />
     </div>
 
-    <div class="my-8">
-        <h4 class="my-4 pl-4 lg:pl-56 font-script">Related do(u)nuts</h4>
+    <div class="my-8 max-w-screen-xl mx-auto">
+        <FileProduct title="Related do(u)nuts">
+            {products.map((product) => <CardFile {...product.data} slug={product.slug} />)}
+        </FileProduct>
 
-        <article class="px-4 lg:pl-56 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4">
-            <CardFile
-                imagePath="/src/assets/strawberry_blast.webp"
-                altText="strawberry_blast"
-                age={6}
-                name="Strawberry Blast"
-                tags={["New", "Expensive"]}
-                bg="bg-white"
-            />
-            <CardFile
-                imagePath="/src/assets/chocolate_dream.webp"
-                altText="chcolato"
-                age={8}
-                name="Chocolate Dream"
-                tags={["New"]}
-                bg="bg-white"
-            />
-            <CardFile
-                imagePath="/src/assets/creamy_nonsense.webp"
-                altText="mixed_creamy"
-                age={2}
-                name="Mixed Delight"
-                tags={["New", "Bundle"]}
-                bg="bg-white"
-            />
-        </article>
+
+
     </div>
 </MainLayout>
