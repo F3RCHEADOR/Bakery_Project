@@ -2,20 +2,19 @@
 import Image from "astro/components/Image.astro";
 import MainLayout from "./MainLayout.astro";
 import { type CollectionEntry } from "astro:content";
-import CardFile from "@/components/CardFile.astro";
-import FileProduct from "./FileProduct.astro";
 type Props = CollectionEntry<"product">["data"];
-import { getCollection } from "astro:content";
-const products = (await getCollection("product"));
+import { fade } from "astro:transitions";
+
 
 const { name, srcImage, tags, price, altImage, description } = Astro.props;
 ---
 
 <MainLayout title={name}>
     <section
+   
         class="max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 mx-auto pt-4 md:pt-2"
     >
-        <div class="my-auto">
+        <div class="my-auto" >
             <h1
                 class="font-script text-6xl md:w-96 text-center md:text-left text-gray-900"
             >
@@ -28,7 +27,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             </p>
         </div>
 
-        <div class="">
+        <div class=""  transition:name={name} transition:animate={fade({duration : "0.3s"})}>
             <Image
                 class="rounded-full object-cover"
                 width={500}
@@ -101,12 +100,5 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
         <slot />
     </div>
 
-    <div class="my-8 max-w-screen-xl mx-auto">
-        <FileProduct title="Related do(u)nuts">
-            {products.slice(0,3).map((product) => <CardFile {...product.data} slug={product.slug} />)}
-        </FileProduct>
-
-
-
-    </div>
+    <div class="my-8 max-w-screen-xl mx-auto"></div>
 </MainLayout>

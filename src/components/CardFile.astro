@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
+import { fade } from "astro:transitions";
 type Props = CollectionEntry<"product">["data"] & { slug: string };
 const { name, srcImage, tags, price, altImage, slug} = Astro.props;
 
 ---
 
-<a href=`/product/${slug}`>
-    <div class=`rounded-xl  py-14`>
-        <div class="flex items-center justify-between">
-            <div class="mx-2 space-x-2">
+<a href=`/product/${slug}`  >
+    <div class=`rounded-xl  py-14`   >
+        <div class="flex items-center justify-between"  >
+            <div class="mx-2 space-x-2" >
                 {
                     tags.map((tag) => (
                         <button class="border bg-slate-300 font-extralight text-xs text-gray-700 p-1 px-2 rounded-xl">
@@ -20,10 +21,10 @@ const { name, srcImage, tags, price, altImage, slug} = Astro.props;
             </div>
             <span class="mx-4 text-gray-600">${price}</span>
         </div>
-        <div class="flex items-center justify-center mx-auto">
+        <div  transition:name={name} transition:animate={fade({duration: "0.4s"})}   class="flex items-center justify-center mx-auto">
             <Image src={srcImage} alt={altImage} width={300} height={300} />
         </div>
-        <h1 class="font-script text-center text-xl sm:text-lg">{name}</h1>
+        <h1  class="font-script text-center text-xl sm:text-lg">{name}</h1>
     </div>
 </a>
 
