@@ -10,57 +10,56 @@ const products = await getCollection("product");
 ---
 
 <MainLayout title="Home">
-<section>
-    <CardTipeOne
-        imagePath="/src/assets/imagen1.webp"
-        altText="Imagen 1"
-        name="Triple Bundle Family Trouble"
-        age={19}
-    />
-    <article
-        class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
-    >
-        <FileProduct title="Related do(u)nuts">
-            {
-                products.map((product) => (
-                    <CardFile {...product.data} slug={product.slug} />
-                ))
-            }
-        </FileProduct>
-    </article>
-</section>
+	<section>
+		<CardTipeOne
+			imagePath="/src/assets/imagen1.webp"
+			altText="Imagen 1"
+			name="Triple Bundle Family Trouble"
+			age={19}
+		/>
+		<article
+			class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
+		>
+			<FileProduct title="Related do(u)nuts">
+				{
+					products.map((product) => (
+						<CardFile {...product.data} slug={product.slug} />
+					))
+				}
+			</FileProduct>
+		</article>
+	</section>
 
-<section class="">
-    <CardTipeOne
-        imagePath="/src/assets/donuts.webp"
-        altText="strawberry_bg"
-        name="Strawberry Massacre"
-        age={1}
-    />
-    <article
-        class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
-    >
-        <FileProduct title="Related do(u)nuts">
-            {
-                products.map((product) => (
-                    <CardFile {...product.data} slug={product.slug} />
-                ))
-            }
-        </FileProduct>
-    </article>
-</section>
-<section>
-    <article
-        class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
-    >
-        <FileProduct title="Related do(u)nuts">
-            {
-                products.map((product) => (
-                    <CardFile {...product.data} slug={product.slug} />
-                ))
-            }
-        </FileProduct>
-    </article>
-</section>
-
+	<section class="">
+		<CardTipeOne
+			imagePath="/src/assets/donuts.webp"
+			altText="strawberry_bg"
+			name="Strawberry Massacre"
+			age={1}
+		/>
+		<article
+			class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
+		>
+			<FileProduct title="Related do(u)nuts">
+				{
+					products.map((product) => (
+						<CardFile {...product.data} slug={product.slug} />
+					))
+				}
+			</FileProduct>
+		</article>
+	</section>
+	<section>
+		<article
+			class="max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-0"
+		>
+			<FileProduct title="Related do(u)nuts">
+				{
+					products.map((product) => (
+						<CardFile {...product.data} slug={product.slug} />
+					))
+				}
+			</FileProduct>
+		</article>
+	</section>
 </MainLayout>

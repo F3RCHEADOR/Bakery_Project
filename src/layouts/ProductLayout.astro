@@ -103,7 +103,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
 
     <div class="my-8 max-w-screen-xl mx-auto">
         <FileProduct title="Related do(u)nuts">
-            {products.map((product) => <CardFile {...product.data} slug={product.slug} />)}
+            {products.slice(0,3).map((product) => <CardFile {...product.data} slug={product.slug} />)}
         </FileProduct>
 
 
