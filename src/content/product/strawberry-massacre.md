@@ -1,5 +1,5 @@
 ---
-srcImage: "/src/assets/donuts.webp"
+srcImage: "/assets/donuts.webp"
 name: "Strawberry Massacre"
 description: "Our Strawberry Massacre donut is dipped in strawberry icing and topped with festive rainbow sprinkles."
 tags: ["Massive"]

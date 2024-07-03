@@ -1,5 +1,5 @@
 ---
-srcImage: "/src/assets/strawberry_blast.webp"
+srcImage: "/assets/strawberry_blast.webp"
 name: "Strawberry"
 description: "Our Strawberry Blast donut is dipped in strawberry icing and topped with festive rainbow sprinkles!!!"
 tags: ["New", "Expensive"]

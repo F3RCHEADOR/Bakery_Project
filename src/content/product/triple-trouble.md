@@ -1,5 +1,5 @@
 ---
-srcImage: "/src/assets/imagen1.webp"
+srcImage: "/assets/imagen1.webp"
 name: "Triple Trouble Family Box"
 description: "When it's too hard to choose, let us choose for you! An awesome bundle of donuts just for you!"
 tags: ["New", "Bundle"]
