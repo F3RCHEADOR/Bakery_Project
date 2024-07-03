@@ -18,19 +18,22 @@ const products = await getCollection("product");
 			age={19}
 		/>
 		<article
-			class="max-w-5xl mx-auto "
+			class="max-w-5xl mx-auto"
 		>
-			<FileProduct title="">
+		<h4 class="flex items-center justify-start font-script my-4">
+			Our Donuts
+		</h4>
+			<FileProduct title="Our Donuts">
 				{
 					products.slice(0,3).slice(0,3).map((product) => (
-						<CardFile {...product.data} slug={product.slug} />
+						<CardFile {...product.data} slug={product.slug} bg="bg-blue-200" />
 					))
 				}
 			</FileProduct>
 		</article>
 	</section>
 
-	<section class="">
+	<section class="my-6">
 		<CardTipeOne
 			imagePath="/src/assets/donuts.webp"
 			altText="strawberry_bg"
