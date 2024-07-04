@@ -11,46 +11,52 @@ const products = await getCollection("product");
 
 <MainLayout title="Home">
 	<section>
-		<CardTipeOne
-			imagePath="/assets/imagen1.webp"
-			altText="Imagen 1"
-			name="Triple Bundle Family Trouble"
-			age={19}
-		/>
-		<article
-			class="max-w-5xl mx-auto"
-		>
-		<h4 class="flex items-center justify-start font-script my-4">
-			Our Donuts
-		</h4>
+		{
+			products
+				.slice(4, 5)
+				.map((product) => (
+					<CardTipeOne
+						{...product.data}
+						slug={product.slug}
+						bg="bg-gray-200"
+					/>
+				))
+		}
+		<article class="max-w-5xl mx-auto">
+			<h4 class="flex items-center justify-start font-script my-4">
+				Our Donuts
+			</h4>
 			<FileProduct title="Our Donuts">
 				{
-					products.slice(0,3).slice(0,3).map((product) => (
-						<CardFile {...product.data} slug={product.slug} bg="bg-blue-200" />
-					))
+					products
+						.slice(0, 3)
+						.map((product) => (
+							<CardFile
+								{...product.data}
+								slug={product.slug}
+								bg="bg-blue-200"
+							/>
+						))
 				}
 			</FileProduct>
 		</article>
 	</section>
 
 	<section class="my-6">
-		<CardTipeOne
-			imagePath="/assets/donuts.webp"
-			altText="strawberry_bg"
-			name="Strawberry Massacre"
-			age={1}
-		/>
-		<article
-			class="max-w-5xl mx-auto "
-		>
-			
-		</article>
+		{
+			products
+				.slice(3, 4)
+				.map((product) => (
+					<CardTipeOne
+						{...product.data}
+						slug={product.slug}
+						bg="bg-gray-200"
+					/>
+				))
+		}
+		<article class="max-w-5xl mx-auto"></article>
 	</section>
 	<section>
-		<article
-			class="max-w-5xl mx-auto "
-		>
-			
-		</article>
+		<article class="max-w-5xl mx-auto"></article>
 	</section>
 </MainLayout>
