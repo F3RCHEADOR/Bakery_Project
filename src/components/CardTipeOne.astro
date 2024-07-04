@@ -1,21 +1,13 @@
 ---
-import { Image } from "astro:assets";
-
+import Image from 'astro/components/Image.astro';
 interface Props {
     imagePath: string;
     altText: string;
     name: string;
     age: number;
 }
-
 const { imagePath, altText, name, age } = Astro.props;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif,webp}",
-);
-if (!images[imagePath])
-    throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
-    );
+
 ---
 
 <div class="max-w-screen-lg mx-auto p-4 sm:p-0">
@@ -27,7 +19,7 @@ if (!images[imagePath])
                 class="sm:absolute z-20 sm:-right-16 md:right-4 lg:right-12 sm:top-0"
             >
                 <Image
-                    src={images[imagePath]()}
+                    src={imagePath}
                     alt={altText}
                     width={600}
                     height={500}

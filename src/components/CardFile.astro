@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Image from "astro/components/Image.astro";
 import { type CollectionEntry } from "astro:content";
 import { fade } from "astro:transitions";
 type Props = CollectionEntry<"product">["data"] & { slug: string; bg: string };
