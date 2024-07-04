@@ -14,7 +14,7 @@ const { name, srcImage, tags, price, altImage, slug, bg } = Astro.props;
         >
             <div class="w-full sm:w-1/2">
                 <div
-                    class="sm:absolute z-20 sm:-right-16 md:right-4 lg:right-12 sm:top-0"
+                    class="sm:absolute z-20 sm:-right-16 md:right-4 lg:right-12 sm:top-0" transition:name={name} transition:animate={fade({duration: '0.4s'})}
                 >
                     <Image
                         src={srcImage}

@@ -14,7 +14,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
 
 <MainLayout title={name}>
     <section
-        class="max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 mx-auto pt-4 md:pt-2"
+        class="max-w-screen-2xl grid grid-cols-1 sm:grid-cols-3 mx-auto pt-4 md:pt-2"
     >
         <div class="my-auto">
             <h1
@@ -30,7 +30,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
         </div>
 
         <div
-            class=""
+            class="sm:scale-125"
             transition:name={name}
             transition:animate={fade({ duration: "0.3s" })}
         >
