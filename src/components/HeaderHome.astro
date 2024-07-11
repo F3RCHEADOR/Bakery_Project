@@ -1,6 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import Image from "astro/components/Image.astro";
+import CartFlyoutToggle from "@/components/CartFlyoutToggle";
+import CartFlyout from "./CartFlyout";
+
 interface Props {
     rutImage: string;
     altImage: string;
@@ -24,6 +27,9 @@ const { rutImage, altImage } = Astro.props;
         <h1 class="text-center font-script text-2xl sm:text-3xl md:text-4xl">
             Bakery Enchanted
         </h1>
-        <Icon class="text-3xl md:text-5xl" name={"lucide:shopping-cart"} />
+        <CartFlyoutToggle client:load />
+        
     </div>
+    <CartFlyout client:load />
+
 </header>

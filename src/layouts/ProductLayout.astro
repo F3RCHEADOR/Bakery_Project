@@ -8,6 +8,7 @@ import FileProduct from "../layouts/FileProduct.astro";
 import CardFile from "@/components/CardFile.astro";
 import { getCollection } from "astro:content";
 const products = await getCollection("product");
+import AddToCartProduct from "@/components/AddToCartProduct";
 
 const { name, srcImage, tags, price, altImage, description } = Astro.props;
 ---
@@ -95,10 +96,12 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
             <h4 class="font-medium">Total price</h4>
             <span class="font-extrabold">${price}.00</span>
         </div>
-        <button
-            class="px-4 py-4 bg-green-100 hover:bg-green-300 border rounded-xl"
-            >Add to Car</button
-        >
+        <AddToCartProduct client:load>
+            <button type="submit"
+                class="px-4 py-4 bg-green-100 hover:bg-green-300 border rounded-xl"
+                >Add to Car</button
+            >
+        </AddToCartProduct>
     </div>
     <div
         class="max-w-screen-md xl:max-w-screen-lg mx-auto prose prose-zinc lg:prose-base px-2 md:px-8 prose-img:w-4/5 prose-img:mx-auto"
