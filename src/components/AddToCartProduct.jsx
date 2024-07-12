@@ -1,12 +1,17 @@
 import { addCartProduct, isProductOpen } from "@/productStore";
+import { z } from "astro/zod";
 
-export default function AddToCartProduct({ children }) {
+export default function AddToCartProduct({ id, name, imageSrc, children }) {
   // we'll hardcore the item info for simplicity
-  const hardcodedItemInfo = {
-    id: 'astronaut-figurine',
-    name: 'Astronaut Figurine',
-    imageSrc: '#',
-  }
+  const productSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    imageSrc: z.string(),
+  });
+
+  const hardcodedItemInfo = productSchema.parse({
+    id, name, imageSrc,
+  })
 
   function addToCart(e) {
     e.preventDefault();
