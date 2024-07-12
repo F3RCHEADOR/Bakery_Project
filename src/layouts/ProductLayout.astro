@@ -98,7 +98,7 @@ const { name, srcImage, tags, price, altImage, description } = Astro.props;
         </div>
         <AddToCartProduct client:load id={name} name={name} imageSrc={srcImage} price={price}>
             <button type="submit"
-                class="px-4 py-4 bg-green-100 hover:bg-green-300 border rounded-xl"
+                class="px-4 py-4 bg-green-100 hover:bg-green-400 hover:scale-120 font-semibold duration-500 border rounded-xl"
                 >Add to Car</button
             >
         </AddToCartProduct>

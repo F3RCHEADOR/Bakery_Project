@@ -25,3 +25,16 @@ export function addCartProduct({ id, name, price, imageSrc }: ItemDisplayInfo) {
     );
   }
 }
+
+export function removeCartProduct({ id, name, price, imageSrc }: ItemDisplayInfo) {
+  const existingEntry = cartProducts.get()[id];
+  if (existingEntry) {
+    cartProducts.setKey(id, { ...existingEntry, quantity: existingEntry.quantity - 1 })
+  } else {
+    cartProducts.setKey(
+      id, {
+      id, name, price, imageSrc, quantity: 0
+    }
+    );
+  }
+}

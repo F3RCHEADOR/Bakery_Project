@@ -1,6 +1,9 @@
 import { useStore } from "@nanostores/react";
 import { isProductOpen, cartProducts } from "@/productStore";
 import CartFlyoutToggle from "@/components/CartFlyoutToggle.jsx";
+import AddToCartProduct from "./AddToCartProduct";
+import { RemoveToCartProduct } from "./AddToCartProduct";
+
 
 export function BlurWindow() {
   const $isProductOpen = useStore(isProductOpen);
@@ -19,22 +22,59 @@ export default function CartFlyout() {
         <CartFlyoutToggle />
         {Object.values($cartProducts).length ? (
           <ul className="space-y-1">
-            {Object.values($cartProducts).map((cartProduct) => (
+            {Object.values($cartProducts).filter(cartProduct => parseInt(cartProduct.quantity, 10) > 0).map((cartProduct) => (
               <li className="flex items-center justify-around border-2 rounded-xl bg-white h-32 p-2 " key={cartProduct.id}>
                 <img className="w-20 md:w-36 " src={cartProduct.imageSrc} alt={cartProduct.name} />
                 <div><h3 className="font-script text-lg">{cartProduct.name}</h3>
                   <p className="text-sm ">Unit Value: <span className="text-md font-semibold">${cartProduct.price}</span></p>
-                  <p className="text-sm ">Cantidad: <span className="text-md font-semibold">{cartProduct.quantity}</span></p></div>
+                  <p className="text-sm ">Cantidad: <span className="text-md font-semibold">{cartProduct.quantity}</span></p>
+                  <div >
+                    <AddToCartProduct id={cartProduct.name} name={cartProduct.name} imageSrc={cartProduct.imageSrc} price={cartProduct.price}   >
+                      <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      </button>
+                    </AddToCartProduct>
+
+                    <RemoveToCartProduct
+                      id={cartProduct.name}
+                      name={cartProduct.name}
+                      imageSrc={cartProduct.imageSrc}
+                      price={cartProduct.price}
+                    >
+                      <button type="submit">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="size-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                          />
+                        </svg>
+                      </button>
+                    </RemoveToCartProduct>
+                  </div>
+                </div>
 
               </li>
             ))}
-            <button className="flex space-x-1 items-center mx-auto p-2 border-4 bg-green-300 rounded-xl font-bold text-sm my-4 hover:bg-green-400 hover:scale-110 duration-200"><span>Comprar</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            </button>
+            {Object.values($cartProducts).some(cartProduct => parseInt(cartProduct.quantity, 10) > 0) ? (
+              <button className="flex space-x-1 items-center mx-auto p-2 border-4 bg-green-300 rounded-xl font-bold text-sm my-4 hover:bg-green-400 hover:scale-110 duration-200">
+                <span>Shop Cart</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </button>
+            ) : <p className="text-center text-base font-bold bg-white">Empty Cart</p>}
           </ul>
         ) : (
-          <p className="text-center text-base font-bold bg-white">Carrito Vacio</p>
+          <p className="text-center text-base font-bold bg-white">Empty Cart</p>
         )}
       </aside>
     </>
