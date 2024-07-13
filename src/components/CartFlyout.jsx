@@ -18,10 +18,16 @@ export default function CartFlyout() {
   return $isProductOpen ? (
     <>
       <BlurWindow />
-      <aside  className="w-60 md:w-80 h-screen border-l-4 fixed top-0 right-0 bg-white z-40">
+      <aside className="w-60 md:w-80 h-screen border-l-4 fixed top-0 right-0 bg-white z-40">
         <div className="flex items-center justify-between bg-teal-400 p-4">
           <button><CartFlyoutToggle /></button>
-          <span className="text-white font-bold text-xl">COP $---</span>
+          <span className="text-white font-bold text-xl">
+            COP $
+            {Object.values($cartProducts).reduce((total, cartProduct) => {
+              const productTotal = parseInt(cartProduct.price) * cartProduct.quantity;
+              return total + productTotal;
+            }, 0)}
+            ,00</span>
         </div>
 
         {Object.values($cartProducts).length ? (
